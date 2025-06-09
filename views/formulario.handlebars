@@ -1,0 +1,105 @@
+<main class="conteinerbgcolor">
+  <div class="container mt-5">
+    <h2 class="text-center">Cadastro de Produto</h2>
+
+    <!-- FORMULÁRIO DE BUSCA -->
+
+    <!-- FORMULÁRIO DE CADASTRO -->
+    <form action="/cadastrar" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="nomeProduto" class="form-label">Nome do Produto</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nomeProduto"
+          name="nomeProduto"
+          placeholder="Digite o nome do produto"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="valorProduto" class="form-label">Valor do Produto</label>
+        <input
+          type="number"
+          class="form-control"
+          id="valorProduto"
+          name="valorProduto"
+          placeholder="Digite o valor do produto"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="arquivoProduto" class="form-label">Escolher Arquivo</label>
+        <input
+          type="file"
+          class="form-control"
+          id="arquivoProduto"
+          name="arquivoProduto"
+        />
+        <small class="form-text text-muted" id="arquivoNome">Nenhum arquivo selecionado</small>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <!-- Removi o link Consultar daqui porque já temos o formulário acima -->
+        <button type="reset" class="btn btn-danger">Limpar</button>
+      </div>
+    </form>
+    <div class="mt-5 text-center" >
+        <form action="/" method="get" class="mb-4 d-flex gap-2">
+      <input
+        type="text"
+        name="busca"
+        placeholder="Buscar produto"
+        class="form-control"
+      />
+      <button type="submit" class="btn btn-dark">Consultar</button>
+    </form>
+    </div>
+
+    <!-- LISTAGEM DE PRODUTOS -->
+    {{#if produtos.length}}
+      <h3 class="mt-5 text-center">Produtos Cadastrados</h3>
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Imagem</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each produtos}}
+            <tr>
+              <td>{{codigo}}</td>
+              <td>{{nome}}</td>
+              <td>R$ {{valor}}</td>
+              <td>
+                <img src="/{{image}}" alt="Imagem do produto" width="100" />
+              </td>
+              <td>
+                <a href="/remover/{{codigo}}" class="btn btn-sm btn-danger">Remover</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+  </div>
+
+  <script>
+    // Atualizar o nome do arquivo selecionado
+    const arquivoInput = document.getElementById('arquivoProduto');
+    const arquivoNome = document.getElementById('arquivoNome');
+
+    arquivoInput.addEventListener('change', function () {
+      if (arquivoInput.files.length > 0) {
+        arquivoNome.textContent = arquivoInput.files[0].name;
+      } else {
+        arquivoNome.textContent = 'Nenhum arquivo selecionado';
+      }
+    });
+  </script>
+</main>

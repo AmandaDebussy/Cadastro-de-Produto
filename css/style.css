@@ -1,0 +1,22 @@
+
+
+
+.conteinerbgcolor{
+    width:50%;
+    margin: 0 auto;
+    font-size: 14px;
+    
+}
+
+.text-center{
+    font-size: 25px;
+}
+
+input::placeholder{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.123);
+}
+
+button{
+    width: 10em;
+}

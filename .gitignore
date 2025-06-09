@@ -1,0 +1,13 @@
+# Evita subir as dependências do Node
+node_modules/
+
+# Arquivo de variáveis de ambiente (ex: credenciais do banco)
+.env
+
+# Arquivos temporários de sistema e logs
+*.log
+.DS_Store
+Thumbs.db
+
+# Cache do VSCode
+.vscode/
